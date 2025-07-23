@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food You Like App by Trupthi Shetty</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #f0f8ff, #d4f1f9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 600px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 15px;
+      font-size: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+      font-size: 24px;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      transform: scale(1.5);
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      padding: 15px 30px;
+      font-size: 22px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+
+    #msg {
+      margin-top: 25px;
+      font-size: 28px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍽️ Food App</h1>
+
+  <form onsubmit="show(event)">
+    <input type="text" id="name" placeholder="Enter Your Name" />
+    
+    <div class="radio-group">
+      <label><input type="radio" name="c" id="ni"> North Indian</label>
+      <label><input type="radio" name="c" id="si" checked> South Indian</label>
+      <label><input type="radio" name="c" id="ff"> Fast Food</label>
+    </div>
+
+    <input type="submit" value="Submit" />
+  </form>
+
+  <h2 id="msg"></h2>
+
+  <script>
+    function show(event) {
+      event.preventDefault();
+
+      let name = document.getElementById("name");
+      let ni = document.getElementById("ni");
+      let si = document.getElementById("si");
+      let ff = document.getElementById("ff");
+      let msg = document.getElementById("msg");
+
+      if (name.value.trim() === "") {
+        alert("Please enter your name.");
+        name.focus();
+        msg.innerHTML = "";
+        return;
+      }
+
+      if (!name.value.match(/^[A-Za-z ]+$/)) {
+        alert("Name should contain only alphabets.");
+        name.value = "";
+        name.focus();
+        msg.innerHTML = "";
+        return;
+      }
+
+      let choice = ni.checked ? "North Indian" : si.checked ? "South Indian" : "Fast Food";
+
+      msg.innerHTML = `👤 Name: <strong>${name.value}</strong><br>🍛 Preferred Cuisine: <strong>${choice}</strong>`;
+    }
+  </script>
+
+</body>
+</html>
+
